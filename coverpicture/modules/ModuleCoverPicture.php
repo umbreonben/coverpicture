@@ -60,7 +60,7 @@ class ModuleCoverPicture extends \Module
             //get parent page
             $objParentPage = \PageModel::findOneBy('id', $objPage->id);
            
-            while((($objCoverPicture->singleSRC == '') || ($objCoverPicture->no_inheritance == 1)) && ($objParentPage->type != 'root'))
+            while(((!$objCoverPicture || !$objCoverPicture->singleSRC) || ($objCoverPicture->no_inheritance == 1)) && ($objParentPage->type != 'root'))
             {
 				$objCoverPicture = \ModuleCoverpictureModel::findOneBy('jumpTo', $objParentPage->id);
 				
